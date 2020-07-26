@@ -1,7 +1,8 @@
 $main-white: #FFFFFF;
-$main-purple: #FFFFFF;
-$main-orange: #FFFFFF;
-$main-teal: #FFFFFF;
+$main-orange: #FF5543;
+$main-teal: #2FC0B2;
+
+$light-gray: #ACACBC;
 
 $break-small: 768px;
 
@@ -13,4 +14,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $main-white;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
 }

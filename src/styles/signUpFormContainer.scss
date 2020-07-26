@@ -1,5 +1,28 @@
 @import 'core';
 
 .container {
-  
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  max-width: 1200px;
+
+  .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 10px;
+    @media (min-width: $break-small) {
+      flex-direction: row;
+      margin: 25px;      
+    }
+
+    .sign-up-img {
+      height: auto;
+      object-fit: contain;
+      width: 100%;
+      @media (min-width: $break-small) {
+        width: 50%;
+      }
+    }
+  }
 }

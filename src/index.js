@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './styles/core.scss';
-import SignUpFormContainer from './containers/SignUpFormContainer';
-
 import * as serviceWorker from './serviceWorker';
+
+import SignUpFormContainer from './containers/SignUpFormContainer';
+import './styles/core.scss';
 
 ReactDOM.render(
   <SignUpFormContainer />,
