@@ -3,11 +3,11 @@
 .input-label {
   display: flex;
   flex-direction: column;
+  margin-bottom: 12px;
 
   .input-field {
-    margin-bottom: 8px;
     padding: 0 8px;
-    margin: 6px 0 12px 0;
+    margin: 6px 0;
     height: 40px;
     font-size: 16px;
     border-radius: 5px;
@@ -18,5 +18,53 @@
 
   .input-field:focus {
     border: 1px solid $main-teal;
+  }
+
+  .input-error {
+    border: 2px solid $main-red;
+  }
+
+  .input-error:focus {
+    border: 2px solid $main-red;
+  }
+
+  .error-tooltip {
+    position: relative;
+    display: inline-block;
+  
+    .error-text {
+      max-width: 200px;
+      background-color: $main-purple;
+      color: $main-white;
+      text-align: center;
+      padding: 6px;
+      border-radius: 6px;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 50%;
+      margin-left: -60px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  
+    .error-text::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent $main-purple transparent;
+    }
+  }
+}
+
+.input-label:hover {
+  .error-text {
+    visibility: visible;
+    opacity: 1;
   }
 }

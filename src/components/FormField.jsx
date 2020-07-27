@@ -7,13 +7,21 @@ const FormField = ({ label, type, value, required, placeholder, onChange, valida
     validate(value);
   }
 
-  const error = errorText || '';
+  let inputStyle = 'input-field', error = '';
+  if (errorText) {
+    inputStyle = `${inputStyle} input-error`;
+    error = (
+      <div className='error-tooltip'>
+        <span className='error-text'>{errorText}</span>
+      </div>
+    );
+  }
 
   return (
     <label className='input-label'>
       {label}
       <input 
-        className='input-field'
+        className={inputStyle}
         type={type}
         value={value}
         required={required}
@@ -21,7 +29,9 @@ const FormField = ({ label, type, value, required, placeholder, onChange, valida
         onChange={onChange}
         onBlur={checkValidity}
         min={min}
-        max={max} />
+        max={max}
+        toolTip={error}
+      />
       {error}
     </label>
   );

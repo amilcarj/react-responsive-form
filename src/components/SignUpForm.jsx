@@ -4,7 +4,7 @@ import FormField from '../components/FormField';
 import '../styles/signUpForm.scss';
 
 const SignUpForm = ({ fields, onSubmit }) => {
-  //Including dropdowns, radio boxes or checkboxes will require updating this logic
+  //Including dropdowns, radio boxes, checkboxes etc will require updating this logic
   const formFields = fields.map(field => {
     return (
       <FormField 

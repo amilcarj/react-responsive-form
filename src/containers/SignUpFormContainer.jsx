@@ -34,7 +34,6 @@ const SignUpFormContainer = () => {
   const [modalTextType, setModalTextType] = useState();
 
   /*TODO:
-    style validation error
     fix warnings in console
     vertically center
     look over everything*/
