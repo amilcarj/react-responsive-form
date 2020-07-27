@@ -179,7 +179,7 @@ const SignUpFormContainer = () => {
 
     if (idealPetWeight) {
       const val = Number(idealPetWeight);
-      error = val < 3 || val > 180 || val <= Number(petWeight) ? `${WEIGHT_FIELD_ERROR} & greater than ${petWeight}` : '';
+      error = val < 3 || val > 180 ? WEIGHT_FIELD_ERROR : '';
       setIdealPetWeightError(error);
     }
 
