@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormField from '../components/FormField';
+
 import '../styles/signUpForm.scss';
 
 const SignUpForm = ({ fields, onSubmit }) => {

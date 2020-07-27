@@ -22,6 +22,11 @@ body {
 .wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  @media (min-width: $break-small) {
+    height: 100vh;
+  }
 }
 
 .text-button {

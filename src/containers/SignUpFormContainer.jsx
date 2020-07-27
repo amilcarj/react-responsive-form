@@ -15,28 +15,23 @@ import signUpAPI from '../api/signUpAPI';
 import '../styles/signUpFormContainer.scss';
 
 const SignUpFormContainer = () => {
-  const [email, setEmail] = useState();
-  const [emailError, setEmailError] = useState();
-  const [password, setPassword] = useState();
-  const [passwordError, setPasswordError] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-  const [confirmPasswordError, setConfirmPasswordError] = useState();
-  const [petName, setPetName] = useState();
-  const [petNameError, setPetNameError] = useState();
-  const [petWeight, setPetWeight] = useState();
-  const [petWeightError, setPetWeightError] = useState();
-  const [idealPetWeight, setIdealPetWeight] = useState();
-  const [idealPetWeightError, setIdealPetWeightError] = useState();
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [petName, setPetName] = useState('');
+  const [petNameError, setPetNameError] = useState('');
+  const [petWeight, setPetWeight] = useState('');
+  const [petWeightError, setPetWeightError] = useState('');
+  const [idealPetWeight, setIdealPetWeight] = useState('');
+  const [idealPetWeightError, setIdealPetWeightError] = useState('');
 
   const [fields, setFields] = useState([]);
 
   const [showResultModal, setShowResultModal] = useState(false);
   const [modalTextType, setModalTextType] = useState();
-
-  /*TODO:
-    fix warnings in console
-    vertically center
-    look over everything*/
 
   useEffect(() => {
     setFields([
@@ -77,12 +72,11 @@ const SignUpFormContainer = () => {
   ]);
 
   const onSubmit = () => {
-    //TODO: uncomment
-    // if (validateEmail() || validatePassword() || validateConfirmPassword() || 
-    //     validatePetName() || validatePetWeight() || validateIdealPetWeight())
-    // {
-    //   return;
-    // }
+    if (validateEmail() || validatePassword() || validateConfirmPassword() || 
+        validatePetName() || validatePetWeight() || validateIdealPetWeight())
+    {
+      return;
+    }
 
     signUpAPI.signUp({ email, password, petName, petWeight, idealPetWeight })
       .then(() => {
@@ -90,8 +84,8 @@ const SignUpFormContainer = () => {
         setPassword('');
         setConfirmPassword('');
         setPetName('');
-        setPetWeight();
-        setIdealPetWeight();
+        setPetWeight('');
+        setIdealPetWeight('');
 
         setModalTextType('SUCCESS');
         setShowResultModal(true);
@@ -116,7 +110,7 @@ const SignUpFormContainer = () => {
       return error;
     }
 
-    const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const pattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/;
     error = pattern.test(email) ? '' : EMAIL_FIELD_ERROR;
     setEmailError(error);
     return error;
@@ -133,7 +127,7 @@ const SignUpFormContainer = () => {
       return error;
     }
 
-    const pattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\.])(?=.{8,})/;
+    const pattern = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*.])(?=.{8,})/;
     error = pattern.test(password) ? '' : PASSWORD_PATTERN_FIELD_ERROR;
     setPasswordError(error);
     return error;

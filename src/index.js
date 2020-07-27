@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
 import SignUpFormContainer from './containers/SignUpFormContainer';
+
 import './styles/core.scss';
 
 ReactDOM.render(

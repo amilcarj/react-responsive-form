@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { resultModalConstants } from '../utils/constants';
+
 import '../styles/resultModal.scss';
 
 const ResultModal = ({ modalTextType, showModal, closeModal, closeText }) => {

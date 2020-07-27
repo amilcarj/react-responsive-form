@@ -3,7 +3,7 @@ import React from 'react';
 import '../styles/formField.scss';
 
 const FormField = ({ label, type, value, required, placeholder, onChange, validate, errorText, min, max }) => {
-  const checkValidity = (e) => {
+  const checkValidity = () => {
     validate(value);
   }
 
@@ -30,7 +30,6 @@ const FormField = ({ label, type, value, required, placeholder, onChange, valida
         onBlur={checkValidity}
         min={min}
         max={max}
-        toolTip={error}
       />
       {error}
     </label>
