@@ -1,0 +1,22 @@
+@import 'core';
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+
+  .input-field {
+    margin-bottom: 8px;
+    padding: 0 8px;
+    margin: 6px 0 12px 0;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid $light-gray;
+    outline: none;
+    box-shadow: 0.5px 0.5px 0 0 hsla(0,8%,61%,.5);
+  }
+
+  .input-field:focus {
+    border: 1px solid $main-teal;
+  }
+}
