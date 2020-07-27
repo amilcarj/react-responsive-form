@@ -2,6 +2,7 @@ $main-white: #FFFFFF;
 $main-orange: #FF5543;
 $main-teal: #2FC0B2;
 $main-gray: #6C6C6C;
+$main-purple: #3F2B4F;
 
 $light-gray: #DBDBE3;
 
@@ -25,7 +26,6 @@ body {
 .text-button {
   height: 40px;
   cursor: pointer;
-  font-weight: bold;
   font-size: 16px;
   outline: none;
   width: 100%;
@@ -42,4 +42,13 @@ body {
 .primary-button {
   background-color: $main-orange;
   color: $main-white;
+}
+
+.secondary-button {
+  background-color: $main-purple;
+  color: $main-white;
+}
+
+.bold {
+  font-weight: bold;
 }

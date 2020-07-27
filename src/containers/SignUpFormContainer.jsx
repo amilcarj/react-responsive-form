@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
 import SignUpForm from '../components/SignUpForm';
+import ResultModal from '../components/ResultModal';
+
 import {
   REQUIRED_FIELD_ERROR,
   WEIGHT_FIELD_ERROR,
   PASSWORD_PATTERN_FIELD_ERROR,
   PASSWORD_MATCH_FIELD_ERROR,
   EMAIL_FIELD_ERROR
-} from '../utils/errorConstants';
+} from '../utils/constants';
+import signUpAPI from '../api/signUpAPI';
+
 import '../styles/signUpFormContainer.scss';
 
 const SignUpFormContainer = () => {
@@ -25,7 +29,15 @@ const SignUpFormContainer = () => {
   const [idealPetWeightError, setIdealPetWeightError] = useState();
 
   const [fields, setFields] = useState([]);
-  const [isLoading, setILoading] = useState(false);
+
+  const [showResultModal, setShowResultModal] = useState(false);
+  const [modalTextType, setModalTextType] = useState();
+
+  /*TODO:
+    style validation error
+    fix warnings in console
+    vertically center
+    look over everything*/
 
   useEffect(() => {
     setFields([
@@ -66,13 +78,32 @@ const SignUpFormContainer = () => {
   ]);
 
   const onSubmit = () => {
-    if (validateEmail() || validatePassword() || validateConfirmPassword() || 
-        validatePetName() || validatePetWeight() || validateIdealPetWeight())
-    {
-      return;
-    }
+    //TODO: uncomment
+    // if (validateEmail() || validatePassword() || validateConfirmPassword() || 
+    //     validatePetName() || validatePetWeight() || validateIdealPetWeight())
+    // {
+    //   return;
+    // }
 
-    alert('submitted');    
+    signUpAPI.signUp({ email, password, petName, petWeight, idealPetWeight })
+      .then(() => {
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setPetName('');
+        setPetWeight();
+        setIdealPetWeight();
+
+        setModalTextType('SUCCESS');
+        setShowResultModal(true);
+      }).catch(err => {
+        setModalTextType(err.message.replace(' ', '_').toUpperCase());
+        setShowResultModal(true);
+      });  
+  };
+
+  const closeModal = () => {
+    setShowResultModal(false);
   };
 
   const onEmailChange = (e) => {
@@ -140,7 +171,8 @@ const SignUpFormContainer = () => {
       return error;
     }
 
-    error = petWeight < 3 || petWeight > 180 ? WEIGHT_FIELD_ERROR : '';
+    const val = Number(petWeight);
+    error = val < 3 || val > 180 ? WEIGHT_FIELD_ERROR : '';
     setPetWeightError(error);
     return error;
   };
@@ -153,7 +185,8 @@ const SignUpFormContainer = () => {
     let error;
 
     if (idealPetWeight) {
-      error = idealPetWeight < 3 || idealPetWeight > 180 ? WEIGHT_FIELD_ERROR : '';
+      const val = Number(idealPetWeight);
+      error = val < 3 || val > 180 || val <= Number(petWeight) ? `${WEIGHT_FIELD_ERROR} & greater than ${petWeight}` : '';
       setIdealPetWeightError(error);
     }
 
@@ -173,6 +206,12 @@ const SignUpFormContainer = () => {
           onSubmit={onSubmit}
         />
       </div>
+      <ResultModal
+        closeModal={closeModal}
+        showModal={showResultModal}
+        modalTextType={modalTextType}
+        closeText='Ok'
+      />
     </div>
   );
 };

@@ -26,7 +26,7 @@ const SignUpForm = ({ fields, onSubmit }) => {
   return (
     <div className='form-container'>
       { formFields }
-      <button onClick={onSubmit} className='text-button pill-button primary-button'>Submit!</button>
+      <button onClick={onSubmit} className='text-button pill-button primary-button bold'>Submit!</button>
     </div>
   );
 };
